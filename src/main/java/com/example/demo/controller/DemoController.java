@@ -17,6 +17,7 @@ import com.example.demo.services.TaskService;
 
 @RestController
 @RequestMapping("api")
+@CrossOrigin
 public class DemoController {
 
 	HttpHeaders headers;
@@ -29,15 +30,14 @@ public class DemoController {
 		headers.add("Content-Type", "application/json; charset=utf-8");
 	}
 
-	@RequestMapping(value = "status", method = RequestMethod.GET)
+	@RequestMapping(value = "/status", method = RequestMethod.GET)
 	public ResponseEntity<String> status() {
 
 		return new ResponseEntity<>("Service OK", headers, HttpStatus.OK);
 
 	}
 
-	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "service", method = RequestMethod.POST)
+	@RequestMapping(value = "/service", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<TaskDto> generateBalance(@RequestBody TaskDto task) {
 
 		System.out.println("Service OK " + task.getName() + " " + task.getUrl() + " " + task.getTypetaskaction());
